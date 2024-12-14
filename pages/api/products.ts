@@ -1,10 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import formidable, { File } from 'formidable';
-import fs from 'fs';
+import formidable, { File, Fields, Files } from 'formidable';
 
 export const config = {
   api: {
-    bodyParser: false,
+    bodyParser: false, // Disable Next.js' built-in body parser
   },
 };
 
@@ -17,22 +16,16 @@ export default async function handler(
   }
 
   const form = new formidable.IncomingForm({
-    uploadDir: './public/uploads',
-    keepExtensions: true,
+    uploadDir: './public/uploads', // Directory to store uploaded files
+    keepExtensions: true, // Keep file extensions
   });
 
   form.parse(
     req,
     async (
       err: any,
-      fields: Partial<{
-        productName: string | (string | undefined)[];
-        brandName: string | (string | undefined)[];
-        description: string | (string | undefined)[];
-        price: unknown;
-        quantity: unknown;
-      }>,
-      files: { image: any }
+      fields: Fields, // Use `Fields` from `formidable`
+      files: Files // Use `Files` from `formidable`
     ) => {
       if (err) {
         console.error('Error parsing form:', err);
@@ -40,11 +33,13 @@ export default async function handler(
       }
 
       try {
+        // Type for images
         interface ProductImage {
           filename: string;
           path: string;
         }
 
+        // Build the product details object
         const productDetails: {
           productName: string | undefined;
           brandName: string | undefined;
@@ -55,28 +50,28 @@ export default async function handler(
         } = {
           productName: Array.isArray(fields.productName)
             ? fields.productName[0]
-            : fields.productName,
+            : (fields.productName as string | undefined),
           brandName: Array.isArray(fields.brandName)
             ? fields.brandName[0]
-            : fields.brandName,
+            : (fields.brandName as string | undefined),
           description: Array.isArray(fields.description)
             ? fields.description[0]
-            : fields.description,
+            : (fields.description as string | undefined),
           price: parseFloat(
             Array.isArray(fields.price)
               ? fields.price[0]
-              : (fields.price as unknown as string)
+              : (fields.price as string)
           ),
           quantity: parseInt(
             Array.isArray(fields.quantity)
               ? fields.quantity[0]
-              : (fields.quantity as unknown as string)
+              : (fields.quantity as string)
           ),
           images: [],
         };
 
-        // Process uploaded images
-        const imageFiles = files.image as File | File[];
+        // Handle image files
+        const imageFiles = files.image as File | File[] | undefined;
         if (Array.isArray(imageFiles)) {
           productDetails.images = imageFiles.map((file) => ({
             filename: file.newFilename,
