@@ -39,6 +39,14 @@ export default async function handler(
           path: string;
         }
 
+        // Safely extract and validate fields
+        const getFieldValue = (field: string | string[] | undefined): string | undefined => {
+          if (Array.isArray(field)) {
+            return field[0];
+          }
+          return field;
+        };
+
         // Build the product details object
         const productDetails: {
           productName: string | undefined;
@@ -48,25 +56,11 @@ export default async function handler(
           quantity: number;
           images: ProductImage[];
         } = {
-          productName: Array.isArray(fields.productName)
-            ? fields.productName[0]
-            : (fields.productName as string | undefined),
-          brandName: Array.isArray(fields.brandName)
-            ? fields.brandName[0]
-            : (fields.brandName as string | undefined),
-          description: Array.isArray(fields.description)
-            ? fields.description[0]
-            : (fields.description as string | undefined),
-          price: parseFloat(
-            Array.isArray(fields.price)
-              ? fields.price[0]
-              : (fields.price as string)
-          ),
-          quantity: parseInt(
-            Array.isArray(fields.quantity)
-              ? fields.quantity[0]
-              : (fields.quantity as string)
-          ),
+          productName: getFieldValue(fields.productName),
+          brandName: getFieldValue(fields.brandName),
+          description: getFieldValue(fields.description),
+          price: parseFloat(getFieldValue(fields.price) || '0'), // Default to 0 if undefined
+          quantity: parseInt(getFieldValue(fields.quantity) || '0', 10), // Default to 0 if undefined
           images: [],
         };
 
