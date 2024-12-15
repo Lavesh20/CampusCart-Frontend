@@ -5,6 +5,7 @@ import { FaGooglePlusG, FaFacebookF, FaLinkedinIn } from 'react-icons/fa'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+
 export function SignUpComponent() {
   const [isActive, setIsActive] = useState(true) 
   const containerRef = useRef<HTMLDivElement>(null)
@@ -69,7 +70,7 @@ export function SignUpComponent() {
       try {
         const response = await axios.post('https://campuscartbackend.onrender.com/api/auth/signup', signUpData)
         console.log('Signup successful:', response.data)
-        handleToggle()
+        router.push('/sign-in')
       } catch (error: any) {
         console.error('Signup error:', error)
         setErrorMessage(error.response?.data?.message || 'Failed to sign up. Please try again.')
@@ -157,7 +158,7 @@ export function SignUpComponent() {
           </form>
         </div>
 
-        <div className="form-container sign-in absolute top-0 h-full transition-all duration-[0.6s] ease-in-out left-0 w-1/2 z-[2]">
+       {/*  <div className="form-container sign-in absolute top-0 h-full transition-all duration-[0.6s] ease-in-out left-0 w-1/2 z-[2]">
           <form  className="bg-white flex items-center justify-center flex-col px-10 h-full">
             <h1 className="text-3xl font-bold mb-4">Sign In</h1>
             <ErrorMessage message={errorMessage} />
@@ -194,7 +195,7 @@ export function SignUpComponent() {
               {loading ? 'Signing In...' : 'Sign In'}
             </button>
           </form>
-        </div>
+        </div> */}
 
         <div className="toggle-container absolute top-0 left-1/2 w-1/2 h-full overflow-hidden transition-all duration-[0.6s] ease-in-out z-[1000]">
           <div className="toggle bg-[#512da8] h-full bg-gradient-to-r from-[#5c6bc0] to-[#512da8] text-white relative left-[-100%]  w-[200%] transform translate-x-0 transition-all duration-[0.6s] ease-in-out">
