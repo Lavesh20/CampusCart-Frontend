@@ -69,6 +69,15 @@ export default function SellPage() {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setIsSubmitting(true);
+     useEffect(() => {
+    const token = localStorage.getItem('jwtToken')
+    if (!token) {
+      alert("You are not Authorized , first sign up or sign in")
+      router.push('/sign-in')
+    }
+
+  }, [])
+    
 
     try {
         // Check if there's at least one image
@@ -80,11 +89,7 @@ export default function SellPage() {
             setIsSubmitting(false);
             return;
         }
-      const token = localStorage.getItem('jwtToken')
-      if (!token) {
-      alert("You are not Authorized , first sign up or sign in")
-      router.push('/sign-in')
-    }
+     
 
   }
 
