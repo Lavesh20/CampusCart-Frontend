@@ -388,9 +388,9 @@ export function LandingPagenew() {
                   onClick={addToCart}
                   className="bg-black hover:bg-black/90 text-white px-5 md:px-6 py-3 md:py-4 rounded-none text-sm md:text-lg w-full md:w-auto border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-colors duration-300 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white"
                 >
-                  <ShoppingCart className="mr-2 h-4 w-4 md:h-5 md:w-5" />
+{/*                   <ShoppingCart className="mr-2 h-4 w-4 md:h-5 md:w-5" />
                   Add to Cart
-                </Button>
+                </Button> */}
               </div>
             </div>
           </div>
