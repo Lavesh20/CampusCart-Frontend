@@ -73,7 +73,7 @@ export function ECommerceNav() {
   const handleSignOut = () => {
     localStorage.removeItem('jwtToken')
     setIsAuthenticated(false)
-    router.push('/')
+    // router.push('/')
   }
 
   const addToCart = (itemName: string) => {
