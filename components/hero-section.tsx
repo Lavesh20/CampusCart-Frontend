@@ -134,7 +134,7 @@ export function LandingPagenew() {
           variant="default"
           size="sm"
           onClick={handleSignOut}
-          className={`inline-flex items-center rounded-lg justify-center p-2 text-sm font-medium leading-none transition-colors duration-300 bg-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white text-black`}
+          className={`hidden sm:inline-flex items-center rounded-lg justify-center p-2 text-sm font-medium leading-none transition-colors duration-300 bg-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white text-black`}
         >
           Sign Out
         </Button>
@@ -142,7 +142,7 @@ export function LandingPagenew() {
     }
     return (
       <>
-        <Link href="/sign-in">
+        <Link href="/sign-in" className="hidden sm:inline-block">
           <Button
             variant="default"
             size="sm"
@@ -151,7 +151,7 @@ export function LandingPagenew() {
             Sign In
           </Button>
         </Link>
-        <Link href="/sign-up">
+        <Link href="/sign-up" className="hidden sm:inline-block">
           <Button
             variant="default"
             size="sm"
@@ -166,21 +166,21 @@ export function LandingPagenew() {
 
   return (
     <div className="min-h-screen bg-[#ffffe0] font-mono space-y-6 md:space-y-12">
-      <nav className={`fixed top-0 left-0 right-0 pl-12 pr-16 z-50 antialiased transition-colors duration-300 bg-white/90 text-black backdrop-blur-sm`}>
+      <nav className={`fixed top-0 left-0 right-0 px-4 sm:px-6 lg:px-12 z-50 antialiased transition-colors duration-300 bg-white/90 text-black backdrop-blur-sm`}>
         <div className="w-full px-4 mx-auto 2xl:px-0 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-8">
               <div className="shrink-0">
                 <a href="/" className="block">
                   <Image
-                    className="w-60 h-16 dark:hidden"
+                    className="w-40 h-10 sm:w-60 sm:h-16 dark:hidden"
                     src="/images/Logo-1.png"
                     alt="Logo"
                     width={240}
                     height={64}
                   />
                   <Image
-                    className="hidden w-60 h-16 dark:block"
+                    className="hidden w-40 h-10 sm:w-60 sm:h-16 dark:block"
                     src="/images/Logo-1.png"
                     alt="Logo"
                     width={240}
@@ -188,12 +188,12 @@ export function LandingPagenew() {
                   />
                 </a>
               </div>
-              <ul className="lg:flex items-center justify-start gap-6 md:gap-8 py-3 sm:justify-center">
+              <ul className="hidden lg:flex items-center justify-start gap-6 md:gap-8 py-3 sm:justify-center">
                 {navItems.map((item) => (
                   <li key={item.name}>
                     <a
                       href={item.href}
-                      className={`text-m font-medium font-weight-10 transition-colors hover:text-red-800`}
+                      className={`text-sm md:text-base font-medium transition-colors hover:text-red-800`}
                     >
                       {item.name}
                     </a>
@@ -246,7 +246,7 @@ export function LandingPagenew() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="lg:hidden"
+                className="lg:hidden ml-2"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
                 <Menu className="h-6 w-6" />
@@ -255,13 +255,13 @@ export function LandingPagenew() {
             </div>
           </div>
           {isMobileMenuOpen && (
-            <div className="lg:hidden mt-4 bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+            <div className="lg:hidden mt-4 bg-gray-50 dark:bg-gray-700 rounded-lg p-4 absolute top-full left-0 right-0">
               <ul className="space-y-3">
                 {navItems.map((item) => (
                   <li key={item.name}>
                     <a
                       href={item.href}
-                      className={`text-sm font-medium transition-colors duration-300 ${isScrolled ? 'text-gray-900 hover:text-primary-700' : 'text-white hover:text-primary-200'}`}
+                      className={`block text-sm font-medium transition-colors duration-300 ${isScrolled ? 'text-gray-900 hover:text-primary-700' : 'text-gray-800 hover:text-primary-600'}`}
                     >
                       {item.name}
                     </a>
@@ -490,5 +490,4 @@ export function LandingPagenew() {
     </div>
   )
 }
-
 
