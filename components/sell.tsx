@@ -80,6 +80,13 @@ export default function SellPage() {
             setIsSubmitting(false);
             return;
         }
+      const token = localStorage.getItem('jwtToken')
+      if (!token) {
+      alert("You are not Authorized , first sign up or sign in")
+      router.push('/sign-in')
+    }
+
+  }
 
         // Create a FormData object
         const formData = new FormData();
