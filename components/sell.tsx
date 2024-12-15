@@ -80,7 +80,14 @@ export default function SellPage() {
             setIsSubmitting(false);
             return;
         }
-     
+        const token = localStorage.getItem('jwtToken');
+    if (!token) {
+      toast({
+        title: "Unauthorized",
+        description: "Please sign in again to sell a product.",
+      });
+      router.push('/sign-in');
+      return;
 
   }
 
