@@ -54,7 +54,7 @@ export function ECommerceNav() {
   ]
 
   const userMenuItems = [
-    { name: 'My Account', href: '/profile' },
+    { name: 'Home', href: '/' },
     
     /* { name: 'Settings', href: '#' },
     { name: 'Favourites', href: '#' },
