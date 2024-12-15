@@ -131,7 +131,7 @@ export function Footer() {
             </div>
             <div className="text-sm text-gray-500 flex items-center space-x-2">
               <MapPin className="h-4 w-4" />
-              <span>123 Campus Street, Collegetown, ST 12345</span>
+              <span>Indore M.P</span>
             </div>
           </div>
         </div>
