@@ -85,7 +85,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
                 { name: 'Mahendra Kumar Tamrakar', role: 'Frontend Developer', image: '/images/Mahendra1.jpg' },
-                { name: 'Lavish Verma', role: 'Frontend Developer', image: '/images/public/images/Lavish.jpg' },
+                { name: 'Lavish Verma', role: 'Frontend Developer', image: '/images/Lavish.jpg' },
                 { name: 'Kuldeep Vishwakarma', role: 'Frontend Developer', image: '/images/kullu.jpg' },
                 { name: 'Malay Choudhary', role: 'Frontend Developer', image: '/images/Malay.jpg' }
               ].map((member, index) => (
